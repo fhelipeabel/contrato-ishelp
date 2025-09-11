@@ -21,8 +21,8 @@
 </head>
 <body>
   <div class="wrap">
-    <h1 class="app-title">Gerador de Contrato — Is Help</h1>
-    <p class="hint">Preencha o formulário ➜ “Gerar contrato” ➜ “Baixar PDF”. O formulário não aparece na impressão. Os dados ficam salvos no navegador.</p>
+    <h1 class="app-title">Desenvolvido por Is Help &copy;</h1>
+    <p class="hint"></p>
 
     <div class="grid">
       <!-- ===== FORMULÁRIO ===== -->
@@ -39,7 +39,7 @@
             </div>
             <div>
               <label for="contatoCliente">E-mail / Telefone</label>
-              <input id="contatoCliente" placeholder="email@cliente.com | (xx) xxxxx-xxxx" />
+              <input id="contatoCliente" type="email" inputmode="email" placeholder="email@cliente.com" />
             </div>
           </div>
 
@@ -48,6 +48,8 @@
 
           <div class="row">
             <div>
+              <label for="escopo">Escopo (texto usado nas cláusulas)</label>
+<input id="escopo" placeholder="Ex.: gestão de redes sociais" />
               <label for="servico">Serviço</label>
               <input id="servico" placeholder="Gestão de redes e tráfego" />
             </div>
@@ -59,12 +61,18 @@
 
           <div class="row">
             <div>
+              <label for="formaPagamento">Forma de pagamento</label>
+<select id="formaPagamento">
+  <option value="">Selecione…</option>
+  <option value="Boleto/Pix">Boleto/Pix</option>
+  <option value="Cartão de crédito">Cartão de crédito</option>
+</select>
               <label for="dataPrimeiroPgto">Data 1º pagamento</label>
               <input id="dataPrimeiroPgto" type="date" />
             </div>
             <div>
               <label for="vencimentoDia">Dia de vencimento</label>
-              <input id="vencimentoDia" placeholder="Ex.: 08" />
+              <input id="vencimentoDia" type="number" inputmode="numeric" min="1" max="31" step="1" placeholder="Ex.: 08" />
             </div>
           </div>
 
@@ -88,9 +96,7 @@
           <div class="actions">
             <button class="btn" id="limpar">Limpar</button>
             <button class="btn" id="restaurar">Restaurar</button>
-            <button class="btn primary" id="gerar">Gerar contrato</button>
-            <button class="btn success" id="pdf" disabled>Baixar PDF</button>
-            <button class="btn" id="imprimir">Imprimir (PDF nativo)</button>
+            <button class="btn success" id="imprimir">Imprimir Contrato</button>
           </div>
         </div>
       </div>
@@ -124,15 +130,17 @@
 
           <div class="section">CLÁUSULA PRIMEIRA: DA PRESTAÇÃO DE SERVIÇOS</div>
           <div class="block">
-            <p>1º – Este contrato tem como objetivo a prestação de serviços da gestão das redes sociais e será desenvolvido conforme os pontos explicados logo abaixo:</p>
+          <p>1º – Este contrato tem como objetivo a prestação de serviços de <span data-merge="escopo">[Escopo]</span> e será desenvolvido conforme os pontos explicados logo abaixo:</p>
             <ol class="alpha">
-              <li>O gerenciamento das campanhas de anúncios pagos nas redes sociais – Meta, com criação/atualização das páginas e manutenção das informações do canal.</li>
+              <li>O gerenciamento de <span data-merge="escopo">[Escopo]</span>, com criação/atualização das páginas e manutenção das informações do canal.</li>
               <li>O acompanhamento de desempenho das campanhas, sendo de responsabilidade da CONTRATANTE o patrocínio dos posts e o pagamento da mídia.</li>
               <li>A criação de textos originais para posts com técnicas adequadas de SEO, conforme temas definidos e novas demandas do canal.</li>
               <li>A escolha de imagens de domínio público quando não houver materiais enviados pela CONTRATANTE; a criação das peças gráficas fica sob responsabilidade da CONTRATADA.</li>
               <li>O monitoramento de engajamento e produção de relatórios simples mensais quando houver patrocínio de campanhas pela CONTRATANTE.</li>
             </ol>
           </div>
+
+          <div class="page-break"></div>
 
           <div class="section">CLÁUSULA SEGUNDA: DAS CONDIÇÕES DA PRESTAÇÃO DOS SERVIÇOS</div>
           <div class="block">
@@ -166,6 +174,8 @@
             <!-- fidelidade de 6 meses REMOVIDA -->
           </div>
 
+          <div class="page-break"></div>
+
           <div class="section">CLÁUSULA QUINTA: DISPOSIÇÕES GERAIS</div>
           <div class="block">
             <p class="num">1º – Ficam assegurados ao CONTRATADO os direitos autorais relativos ao projeto, podendo a CONTRATADA divulgar em portfólio e canais próprios.</p>
@@ -180,9 +190,7 @@
 
           <div class="section">FORMA DE PAGAMENTO, VENCIMENTO E PERÍODO DE CONTRATO</div>
           <div class="block">
-            <p>
-              Boleto/Pix <span class="caixa"></span> Cartão de crédito <span class="caixa"></span>
-            </p>
+            <p><strong>Forma de pagamento:</strong> <span data-merge="formaPagamento">[Forma]</span></p>
             <p>Data primeiro pagamento: <span data-merge="dataPrimeiroPgtoLegivel" class="mono">[dd/mm/aaaa]</span></p>
             <p>Data de vencimento: <span data-merge="vencimentoDia" class="mono">[Dia]</span> <span class="small">(necessário ser a mesma do primeiro pagamento)</span></p>
             <p>O início da prestação será contado a partir de <span data-merge="dataInicioLegivel" class="mono">[dd/mm/aaaa]</span> e poderá ser rescindido a qualquer momento, conforme CLÁUSULA QUARTA.</p>
@@ -201,13 +209,13 @@
             <p>Assinatura: ________________________________ &nbsp; Data: <span data-merge="dataAssinaturaLegivel" class="mono">[dd/mm/aaaa]</span></p>
 
             <div class="assinaturas">
-              <div>
+              <div class="tante-e-tada">
                 <div class="line"><span data-merge="cliente">[Cliente]</span></div>
-                CONTRATANTE
+                <en></en>CONTRATANTE</en>
               </div>
-              <div>
-                <div class="line">IS HELP REPRESENTACOES COMERCIAIS LTDA</div>
-                CONTRATADA
+              <div class="tante-e-tada">
+                <div class="line">Consultor Is Help</div>
+                <en>CONTRATADA</en>
               </div>
             </div>
           </div>
