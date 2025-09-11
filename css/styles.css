@@ -149,3 +149,12 @@ select option{
 #imprimir:focus {
   color: #0b0d10;
 }
+/* Visibilidade condicional para impressão */
+.print-only { display: none !important; }  /* por padrão não mostra na tela */
+
+@media print {
+  .no-print   { display: none !important; }   /* esconda no papel */
+  .print-only { display: block !important; }  /* mostre só no papel */
+  .screen-only{ display: none !important; }   /* alias útil p/ elementos de tela */
+}
+
