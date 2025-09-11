@@ -1,4 +1,4 @@
-// app/api/pdf/route.tsx
+// app/api/pdf/route.js
 import { NextRequest } from "next/server";
 import React from "react";
 import { renderToBuffer } from "@react-pdf/renderer";
@@ -9,7 +9,7 @@ export const runtime = "nodejs";
 
 // Schema in-line para evitar erro de import agora
 const contractSchema = z.object({
-  contratanteRazao: z.string().min(2),
+  contratanteRazao: z.string().min(2),t
   contratanteDocumento: z.string().min(5),
   contratanteEndereco: z.string().min(5),
   contratanteEmail: z.string().email(),
@@ -39,3 +39,4 @@ export async function POST(req: NextRequest) {
     return new Response(JSON.stringify({ error: err?.message ?? "Erro" }), { status: 400 });
   }
 }
+
