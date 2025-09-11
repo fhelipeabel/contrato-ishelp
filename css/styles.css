@@ -1,5 +1,5 @@
 :root{
-  --ui-bg:#0b0d10; --ui-card:#13161a; --ui-ink:#e7ecf3; --ui-muted:#a6b0bf;
+  --ui-bg:#002022; --ui-card:#13161a; --ui-ink:#e7ecf3; --ui-muted:#a6b0bf;
   --ui-radius:14px; --ui-shadow:0 10px 28px rgba(0,0,0,.35);
   --page-w:210mm; --page-h:297mm; --page-pad:25.4mm; /* A4 + margens 2,54 cm */
 }
@@ -14,13 +14,12 @@ html,body{margin:0;padding:0;background:var(--ui-bg);color:var(--ui-ink);font-fa
 .card h2{margin:0;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.08);font-size:16px}
 .card .body{padding:18px}
 label{display:block;font-size:12px;color:var(--ui-muted);margin:10px 0 6px}
-input, textarea{width:100%;background:#0e1115;color:var(--ui-ink);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:10px 12px;outline:none}
-input:focus, textarea:focus{border-color:#94a3b8;box-shadow:0 0 0 3px rgba(148,163,184,.2)}
+input, textarea, select{width:100%;background:#0e1115;color:var(--ui-ink);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:10px 12px;outline:none}
+input:focus, textarea:focus, select:focus{border-color:#94a3b8;box-shadow:0 0 0 3px rgba(148,163,184,.2)}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
 .btn{cursor:pointer;border:1px solid rgba(255,255,255,.14);background:#0e1115;color:var(--ui-ink);padding:10px 14px;border-radius:10px;font-weight:600}
-.btn.primary{background:#334155;border-color:#334155}
-.btn.success{background:#065f46;border-color:#065f46}
+.btn.success{background:#FFB800;border-color:#FFD500}
 .hint{color:var(--ui-muted);font-size:12px;margin-top:6px}
 
 /* ===== Documento (Word-like) ===== */
@@ -28,8 +27,8 @@ input:focus, textarea:focus{border-color:#94a3b8;box-shadow:0 0 0 3px rgba(148,1
 .sheet{
   width:var(--page-w); min-height:var(--page-h);
   padding:var(--page-pad);
-  color:#111; font-family:"Times New Roman", Times, Georgia, serif;
-  line-height:1.5; margin:0 auto; background:#fff;
+  color:#000000; font-family:"Times New Roman", Times, Georgia, serif;
+  line-height:1.5; margin:0 auto; background:#13161a;
 }
 .sheet{
   /* …mantém o que você já tem… */
@@ -40,20 +39,22 @@ input:focus, textarea:focus{border-color:#94a3b8;box-shadow:0 0 0 3px rgba(148,1
 }
 .logo-top{display:flex;justify-content:center;align-items:center;margin-bottom:14px}
 .logo-top img{max-height:44px}
-.title{font-weight:bold;text-transform:uppercase;text-align:center;margin:0 0 8px 0;font-size:16pt}
-.definicao{font-size:12pt; text-align:justify; margin:8px 0 18px}
-.section{margin:16px 0 10px; font-size:12pt; font-weight:bold; text-transform:uppercase}
-.block p{font-size:12pt; margin:6px 0; text-align:justify}
+.title{font-weight:bold;text-transform:uppercase;text-align:center;margin:0 0 8px 0;font-size:20px}
+.definicao{font-size:11px; text-align:justify; margin:8px 0 18px}
+.section{margin:16px 0 10px; font-size:16px; font-weight:bold; text-transform:uppercase}
+.block p,
+.block li{font-size:12px; margin:6px 0; text-align:justify}
 .block ol{margin:6px 0 6px 22px}
 .alpha{list-style: lower-alpha}
 .alpha li::marker{content:"(" counter(list-item, lower-alpha) ") "}
 .num{ margin: 6px 0; }
 .assinaturas{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:24px}
-.assinaturas .line{border-top:1px solid #111;padding-top:6px;text-align:center}
-.small{font-size:11pt}
+.assinaturas .line{border-top:1px solid #111;padding-top:6px;text-align:center; font-size:12px;}
+.small{font-size:11px}
 .linha{border-top:1px solid #111;margin:12px 0}
 .caixa{display:inline-block; width:12px; height:12px; border:1px solid #111; margin:0 6px -1px 6px}
-.mono{font-family:"Courier New", Courier, monospace}
+.mono{font-family:""Nunito", -apple-system, "Segoe UI", Roboto, Arial, sans-serif", Courier, monospace}
+.tante-e-tada{font-size: 12px;}
 
 /* Impressão: esconder formulário e usar página A4 limpa */
 @media print{
@@ -61,11 +62,12 @@ input:focus, textarea:focus{border-color:#94a3b8;box-shadow:0 0 0 3px rgba(148,1
   .grid{display:block}
   .card{display:none}
   .sheet-wrap{box-shadow:none}
-  .sheet{width:auto;min-height:auto;padding:20mm}
+  .sheet{width:auto;min-height:auto;padding:10mm}
 }
 /* ===== Overrides de fonte (aplique ao final do styles.css) ===== */
 .sheet{
   font-family: "Nunito", -apple-system, "Segoe UI", Roboto, Arial, sans-serif !important;
+  color:#000000
 }
 .title, .section{
   font-weight: 700;
@@ -76,4 +78,74 @@ input:focus, textarea:focus{border-color:#94a3b8;box-shadow:0 0 0 3px rgba(148,1
 @media (max-width:1100px){
   .grid{grid-template-columns:1fr}
   .sheet{width:auto}
+}
+/* === Quebras de página (Word-like) === */
+.page-break {
+  break-before: page;              /* moderno */
+  page-break-before: always;       /* legado */
+}
+
+/* Evitar quebrar itens “no meio” */
+.section, .block { break-inside: avoid; page-break-inside: avoid; }
+.block li     { break-inside: avoid; }
+.title        { break-after: avoid; page-break-after: avoid; }
+
+/* (Opcional) Tipografia mais estável no PDF */
+.sheet{
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  hyphens: auto;
+}
+/* Select com seta customizada (sem alterar HTML) */
+select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 36px;                  /* espaço pra seta */
+  background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a6b0bf' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 12px) 50%;
+  background-size: 12px;
+}
+select:hover{ border-color: rgba(255,255,255,.18); }
+select::-ms-expand{ display:none; }      /* IE/antigo Edge */
+select option{
+  background:#0e1115;                    /* dropdown escuro consistente */
+  color:var(--ui-ink);
+}
+/* === Word-like ESCURO na tela === */
+@media screen {
+  .sheet{
+    background: #13161a !important;  /* fundo escuro no preview */
+    color: #ffffff !important;        /* texto branco no preview */
+  }
+}
+
+/* === Word-like CLARO na impressão === */
+@media print {
+  .sheet{
+    background: #ffffff !important;   /* fundo branco no PDF/impressão */
+    color: #000000 !important;        /* texto preto no PDF/impressão */
+  }
+}
+/* Botões lado a lado, sempre na mesma linha */
+.actions{
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;   /* impede quebrar linha */
+  align-items: center;
+}
+.actions .btn{
+  flex: 0 0 auto;      /* não estica, mantém largura do texto */
+}
+/* Texto escuro apenas no botão de imprimir */
+#imprimir {
+  color: #0b0d10; /* bem escuro */
+}
+
+/* (opcional) manter escuro no hover/focus também */
+#imprimir:hover,
+#imprimir:focus {
+  color: #0b0d10;
 }
