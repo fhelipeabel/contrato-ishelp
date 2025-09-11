@@ -31,6 +31,13 @@ input:focus, textarea:focus{border-color:#94a3b8;box-shadow:0 0 0 3px rgba(148,1
   color:#111; font-family:"Times New Roman", Times, Georgia, serif;
   line-height:1.5; margin:0 auto; background:#fff;
 }
+.sheet{
+  /* …mantém o que você já tem… */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  hyphens: auto;         /* funciona bem com <html lang="pt-BR"> */
+  word-break: normal;
+}
 .logo-top{display:flex;justify-content:center;align-items:center;margin-bottom:14px}
 .logo-top img{max-height:44px}
 .title{font-weight:bold;text-transform:uppercase;text-align:center;margin:0 0 8px 0;font-size:16pt}
@@ -40,8 +47,7 @@ input:focus, textarea:focus{border-color:#94a3b8;box-shadow:0 0 0 3px rgba(148,1
 .block ol{margin:6px 0 6px 22px}
 .alpha{list-style: lower-alpha}
 .alpha li::marker{content:"(" counter(list-item, lower-alpha) ") "}
-.num{margin:0}
-.num p{margin:6px 0}
+.num{ margin: 6px 0; }
 .assinaturas{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:24px}
 .assinaturas .line{border-top:1px solid #111;padding-top:6px;text-align:center}
 .small{font-size:11pt}
