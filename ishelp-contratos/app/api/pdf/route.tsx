@@ -2,7 +2,7 @@
 import { NextRequest } from "next/server";
 import { renderToStream } from "@react-pdf/renderer";
 import ContractPDF from "../../../components/ContractPDF";
-import { contractSchema } from "../../../lib/schem";
+import { contractSchema } from "../../../lib/schema";
 
 export const runtime = "nodejs"; // <— mudei de "edge" para "nodejs"
 
@@ -22,6 +22,7 @@ export async function POST(req: NextRequest) {
     return new Response(JSON.stringify({ error: err?.message ?? "Erro" }), { status: 400 });
   }
 }
+
 
 
 
