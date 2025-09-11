@@ -1,9 +1,11 @@
-// app/page.tsx
-export default function Page() {
+// ishelp-contratos/app/page.tsx
+import * as React from "react";
+
+export default function Page(): JSX.Element {
   return (
     <main style={{ padding: 24, fontFamily: "system-ui, sans-serif" }}>
       <h1>Is Help – Gerador de Contrato</h1>
-      <p>Deploy OK. Agora vamos ligar o formulário e o PDF.</p>
+      <p>Deploy OK (stub). Depois voltamos com o formulário e o PDF.</p>
     </main>
   );
 }
