@@ -1,0 +1,65 @@
+:root{
+  --ui-bg:#0b0d10; --ui-card:#13161a; --ui-ink:#e7ecf3; --ui-muted:#a6b0bf;
+  --ui-radius:14px; --ui-shadow:0 10px 28px rgba(0,0,0,.35);
+  --page-w:210mm; --page-h:297mm; --page-pad:25.4mm; /* A4 + margens 2,54 cm */
+}
+
+/* ===== App (UI) ===== */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--ui-bg);color:var(--ui-ink);font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif}
+.wrap{max-width:1200px;margin:28px auto;padding:0 16px}
+.app-title{margin:0 0 8px;font-size:20px;font-weight:700}
+.grid{display:grid;grid-template-columns:360px 1fr;gap:24px}
+.card{background:var(--ui-card);border:1px solid rgba(255,255,255,.08);border-radius:var(--ui-radius);box-shadow:var(--ui-shadow)}
+.card h2{margin:0;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.08);font-size:16px}
+.card .body{padding:18px}
+label{display:block;font-size:12px;color:var(--ui-muted);margin:10px 0 6px}
+input, textarea{width:100%;background:#0e1115;color:var(--ui-ink);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:10px 12px;outline:none}
+input:focus, textarea:focus{border-color:#94a3b8;box-shadow:0 0 0 3px rgba(148,163,184,.2)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.btn{cursor:pointer;border:1px solid rgba(255,255,255,.14);background:#0e1115;color:var(--ui-ink);padding:10px 14px;border-radius:10px;font-weight:600}
+.btn.primary{background:#334155;border-color:#334155}
+.btn.success{background:#065f46;border-color:#065f46}
+.hint{color:var(--ui-muted);font-size:12px;margin-top:6px}
+
+/* ===== Documento (Word-like) ===== */
+.sheet-wrap{background:#fff;border-radius:12px;overflow:hidden}
+.sheet{
+  width:var(--page-w); min-height:var(--page-h);
+  padding:var(--page-pad);
+  color:#111; font-family:"Times New Roman", Times, Georgia, serif;
+  line-height:1.5; margin:0 auto; background:#fff;
+}
+.logo-top{display:flex;justify-content:center;align-items:center;margin-bottom:14px}
+.logo-top img{max-height:44px}
+.title{font-weight:bold;text-transform:uppercase;text-align:center;margin:0 0 8px 0;font-size:16pt}
+.definicao{font-size:12pt; text-align:justify; margin:8px 0 18px}
+.section{margin:16px 0 10px; font-size:12pt; font-weight:bold; text-transform:uppercase}
+.block p{font-size:12pt; margin:6px 0; text-align:justify}
+.block ol{margin:6px 0 6px 22px}
+.alpha{list-style: lower-alpha}
+.alpha li::marker{content:"(" counter(list-item, lower-alpha) ") "}
+.num{margin:0}
+.num p{margin:6px 0}
+.assinaturas{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:24px}
+.assinaturas .line{border-top:1px solid #111;padding-top:6px;text-align:center}
+.small{font-size:11pt}
+.linha{border-top:1px solid #111;margin:12px 0}
+.caixa{display:inline-block; width:12px; height:12px; border:1px solid #111; margin:0 6px -1px 6px}
+.mono{font-family:"Courier New", Courier, monospace}
+
+/* Impressão: esconder formulário e usar página A4 limpa */
+@media print{
+  body{background:#fff}
+  .grid{display:block}
+  .card{display:none}
+  .sheet-wrap{box-shadow:none}
+  .sheet{width:auto;min-height:auto;padding:20mm}
+}
+
+/* Responsivo */
+@media (max-width:1100px){
+  .grid{grid-template-columns:1fr}
+  .sheet{width:auto}
+}
