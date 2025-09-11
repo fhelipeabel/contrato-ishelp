@@ -7,7 +7,6 @@
     "jsx": "preserve",
     "strict": true,
     "baseUrl": ".",
-    "paths": { "@/*": ["./*"] },
     "allowJs": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
