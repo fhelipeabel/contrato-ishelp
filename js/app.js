@@ -6,7 +6,7 @@ const get = (id) => document.getElementById(id);
 const fields = [
   "cliente","clienteDoc","contatoCliente","enderecoCliente",
   "servico","valor","dataPrimeiroPgto","vencimentoDia","dataInicio","dataAssinatura",
-  "detalhesPlano","clausulasExtras"
+  "detalhesPlano","clausulasExtras","escopo","formaPagamento"
 ];
 
 /* Datas padrão = hoje */
@@ -39,7 +39,6 @@ fields.forEach(f=>{
 get('limpar').addEventListener('click',()=>{
   fields.forEach(f=>get(f).value='');
   localStorage.removeItem('ishelp-contrato-draft');
-  get('pdf').disabled = true;
   merge();
 });
 get('restaurar').addEventListener('click',()=>{
@@ -78,36 +77,11 @@ function merge(){
   if(extras){
     const div=document.createElement('div');
     div.className='block';
-    div.innerHTML = `<div class="section">CLÁUSULAS ADICIONAIS</div><p class="small" style="white-space:pre-line;word-break:break-word">${extras}</p>`;
+    div.innerHTML = `<div class="section">CLÁUSULAS ADICIONAIS (EVENTUAL)</div><p class="small" style="white-space:pre-line;word-break:break-word">${extras}</p>`;
     extrasBlock.appendChild(div);
   }
 
   // Habilitar PDF com campos essenciais
   const ok = !!(map['cliente'] && map['servico'] && map['valor']);
-  get('pdf').disabled = !ok;
   return ok;
 }
-
-merge();
-fields.forEach(f=>get(f).addEventListener('change',merge));
-get('gerar').addEventListener('click',()=>{
-  const ok=merge();
-  if(ok){ document.getElementById('previewCard').scrollIntoView({behavior:'smooth',block:'start'}); }
-  else { alert('Preencha pelo menos: Cliente, Serviço e Valor.'); }
-});
-
-/* PDF */
-get('pdf').addEventListener('click',async ()=>{
-  merge();
-  const el = document.getElementById('contrato');
-  const fileName = `Contrato_${(get('cliente').value||'cliente').replace(/\s+/g,'_')}.pdf`;
-  const opt = {
-    margin:[0,0,0,0], /* já usamos margens A4 internas */
-    filename:fileName,
-    image:{type:'jpeg',quality:0.98},
-    html2canvas:{scale:2,useCORS:true},
-    jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}
-  };
-  try{ await html2pdf().from(el).set(opt).save(); }
-  catch(e){ console.error(e); alert('Falha ao gerar PDF. Tente “Imprimir (PDF nativo)”.'); }
-});
