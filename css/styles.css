@@ -157,4 +157,38 @@ select option{
   .print-only { display: block !important; }  /* mostre só no papel */
   .screen-only{ display: none !important; }   /* alias útil p/ elementos de tela */
 }
+/* ===== RESPONSIVO (apenas adições) ===== */
 
+/* <= 1024px: tablet / landscape */
+@media screen and (max-width: 1024px){
+  .wrap{ margin: 20px auto; padding: 0 12px; }
+  .grid{ grid-template-columns: 1fr; gap: 16px; }   /* form acima e contrato abaixo */
+  .sheet{ width: auto; padding: 24px; border-radius: 12px; }
+}
+
+/* <= 768px: phones comuns */
+@media screen and (max-width: 768px){
+  .row{ grid-template-columns: 1fr; gap: 8px; }     /* inputs em 1 coluna */
+  label{ font-size: 13px; }
+
+  /* evita zoom do iOS ao focar e melhora toque */
+  input, textarea, select{ font-size: 16px; padding: 12px; }
+
+  /* tipografia do documento um pouco maior para leitura */
+  .title{ font-size: 18px; }
+  .section{ font-size: 15px; }
+  .block p, .block li{ font-size: 13px; }
+
+  .sheet{ padding: 20px; }
+  .logo-top img{ max-height: 36px; }
+}
+
+/* <= 420px: phones pequenos */
+@media screen and (max-width: 420px){
+  .wrap{ padding: 0 10px; }
+  .sheet{ padding: 16px; }
+
+  /* botões empilham quando a tela for muito estreita */
+  .actions{ flex-wrap: wrap; gap: 8px; }
+  .actions .btn{ width: 100%; text-align: center; }
+}
