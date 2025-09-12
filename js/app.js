@@ -70,14 +70,14 @@ function merge(){
   const dText = document.getElementById('detalhesPlanoText');
   dText.textContent = d || '[Opcional]';
 
-  // Cláusulas adicionais (opcional)
+  // CLÁUSULA SEXTA: ANEXO (opcional)
   const extras = (map['clausulasExtras']||'').trim();
   const extrasBlock = document.getElementById('extrasBlock');
   extrasBlock.innerHTML = '';
   if(extras){
     const div=document.createElement('div');
     div.className='block';
-    div.innerHTML = `<div class="section">CLÁUSULAS ADICIONAIS (EVENTUAL)</div><p class="small" style="white-space:pre-line;word-break:break-word">${extras}</p>`;
+    div.innerHTML = `<div class="section">CLÁUSULA SEXTA: ANEXO</div><p class="small" style="white-space:pre-line;word-break:break-word">${extras}</p>`;
     extrasBlock.appendChild(div);
   }
 
