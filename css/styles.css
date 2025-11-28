@@ -324,3 +324,12 @@ select option{
 .hidden-preview{
   display: none;
 }
+
+@media print {
+  .wizard-header,
+  .wizard-nav,
+  .hint {
+    display: none !important;
+  }
+}
+
