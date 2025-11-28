@@ -1,4 +1,4 @@
-/* ===== Utilidades ===== */
+    /* ===== Utilidades ===== */
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => [...document.querySelectorAll(s)];
 const get = (id) => document.getElementById(id);
@@ -85,3 +85,138 @@ function merge(){
   const ok = !!(map['cliente'] && map['servico'] && map['valor']);
   return ok;
 }
+document.addEventListener('DOMContentLoaded', () => {
+  const steps = Array.from(document.querySelectorAll('.step'));
+  const prevBtn = document.getElementById('prevStep');
+  const nextBtn = document.getElementById('nextStep');
+  const hint    = document.querySelector('.hint');
+  const preview = document.getElementById('previewCard');
+
+  if (!steps.length || !prevBtn || !nextBtn) return;
+
+  let current = 0;
+
+  function updateWizard(){
+    steps.forEach((step, index) => {
+      step.classList.toggle('active', index === current);
+    });
+
+    prevBtn.disabled = current === 0;
+    nextBtn.textContent = current === steps.length - 1
+      ? 'Conferir contrato'
+      : 'Próximo';
+
+    const titleEl = steps[current].querySelector('.step-title');
+    if (hint && titleEl){
+      hint.textContent = `Passo ${current + 1} de ${steps.length} – ${titleEl.textContent}`;
+    }
+  }
+
+  prevBtn.addEventListener('click', () => {
+    if (current > 0){
+      current--;
+      updateWizard();
+    }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if (current < steps.length - 1){
+      current++;
+      updateWizard();
+
+      // Se acabou de entrar no último passo, rola pro preview
+      if (current === steps.length - 1 && preview){
+        preview.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // Já está no último passo: só rola pro contrato
+      if (preview){
+        preview.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  });
+
+  updateWizard();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const steps  = Array.from(document.querySelectorAll('.step'));
+  const prevBtn = document.getElementById('prevStep');
+  const nextBtn = document.getElementById('nextStep');
+  const preview = document.getElementById('previewCard');
+
+  const progressBar = document.getElementById('wizardProgress');
+  const stepLabel   = document.getElementById('wizardStepLabel');
+  const stepHint    = document.getElementById('wizardStepHint');
+
+  if (!steps.length || !prevBtn || !nextBtn) return;
+
+  let current = 0;
+  let previewVisible = false;
+
+  function updateProgress(){
+    if (!progressBar || !stepLabel || !stepHint) return;
+
+    const total = steps.length;
+    const percent = ((current + 1) / total) * 100;
+
+    progressBar.style.width = `${percent}%`;
+    stepLabel.textContent = `Passo ${current + 1} de ${total}`;
+
+    const titleEl = steps[current].querySelector('.step-title');
+    stepHint.textContent = titleEl ? titleEl.textContent : '';
+  }
+
+  function updateWizard(){
+    steps.forEach((step, index) => {
+      step.classList.toggle('active', index === current);
+    });
+
+    prevBtn.disabled = current === 0;
+    nextBtn.textContent = current === steps.length - 1
+      ? 'Conferir contrato'
+      : 'Próximo';
+
+    updateProgress();
+  }
+
+  function hidePreview(){
+    previewVisible = false;
+    if (preview){
+      preview.classList.add('hidden-preview');
+    }
+  }
+
+  function showPreview(){
+    previewVisible = true;
+    if (preview){
+      preview.classList.remove('hidden-preview');
+      preview.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  prevBtn.addEventListener('click', () => {
+    if (current > 0){
+      current--;
+      hidePreview();   // se o usuário voltou, some com o contrato
+      updateWizard();
+    }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    // ainda não chegou no último passo
+    if (current < steps.length - 1){
+      current++;
+      hidePreview();   // sempre que avançar passo, mantém preview escondido
+      updateWizard();
+    }
+    // já está no último passo → mostra contrato
+    else {
+      showPreview();
+    }
+  });
+
+  // inicia wizard no passo 1 e preview escondido
+  hidePreview();
+  updateWizard();
+});
