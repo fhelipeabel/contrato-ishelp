@@ -30,83 +30,154 @@
       <div class="card">
         <h2>Formulário</h2>
         <div class="body">
-          <label for="cliente">Razão Social / Nome (Contratante)</label>
-          <input id="cliente" placeholder="Razão Social do Cliente" />
+            <div class="body">
+  <!-- HEADER DO WIZARD -->
+  <div class="wizard-header">
+    <div class="wizard-progress">
+      <div class="wizard-progress-fill" id="wizardProgress"></div>
+    </div>
+    <div class="wizard-progress-meta">
+      <span id="wizardStepLabel">Passo 1 de 5</span>
+      <span id="wizardStepHint">Sobre a empresa / cliente</span>
+    </div>
+  </div>
 
-          <div class="row">
-            <div>
-              <label for="clienteDoc">CNPJ/CPF</label>
-              <input id="clienteDoc" placeholder="00.000.000/0000-00" />
-            </div>
-            <div>
-              <label for="contatoCliente">E-mail / Telefone</label>
-              <input id="contatoCliente" type="email" inputmode="email" placeholder="email@cliente.com" />
-            </div>
-          </div>
+  <div id="wizard">
+    <!-- seus .step (1 a 5) ficam aqui, como já montamos antes -->
+    ...
+  </div>
+</div>
 
-          <label for="enderecoCliente">Endereço (Contratante)</label>
-          <input id="enderecoCliente" placeholder="Rua, número, bairro, cidade/UF" />
+  <div id="wizard">
 
-          <div class="row">
-            <div>
-              <label for="escopo">Escopo (texto usado nas cláusulas)</label>
-<input id="escopo" placeholder="Ex.: gestão de redes sociais" />
-              <label for="servico">Plano</label>
-              <input id="servico" placeholder="Gestão de redes e tráfego" />
-            </div>
-            <div>
-              <label for="valor">Valor mensal</label>
-              <input id="valor" placeholder="R$ 1.300,00" />
-            </div>
-          </div>
+    <!-- PASSO 1 -->
+    <div class="step active" data-step="1">
+      <div class="step-title">Sobre a empresa / cliente</div>
+      <div class="step-sub">
+        Comece preenchendo os dados principais da CONTRATANTE.
+      </div>
 
-          <div class="row">
-            <div>
-              <label for="formaPagamento">Forma de pagamento</label>
-<select id="formaPagamento">
-  <option value="">Selecione…</option>
-  <option value="Boleto/Pix">Boleto/Pix</option>
-  <option value="Cartão de crédito">Cartão de crédito</option>
-</select>
-              <label for="dataPrimeiroPgto">Data 1º pagamento</label>
-              <input id="dataPrimeiroPgto" type="date" />
-            </div>
-            <div>
-              <label for="vencimentoDia">Dia de vencimento</label>
-              <input id="vencimentoDia" type="number" inputmode="numeric" min="1" max="31" step="1" placeholder="Ex.: 08" />
-            </div>
-          </div>
+      <label for="cliente">Razão Social / Nome (Contratante)</label>
+      <input id="cliente" placeholder="Razão Social do Cliente" />
 
-          <div class="row">
-            <div>
-              <label for="dataInicio">Início da prestação</label>
-              <input id="dataInicio" type="date" />
-            </div>
-            <div>
-              <label for="dataAssinatura">Data de assinatura</label>
-              <input id="dataAssinatura" type="date" />
-            </div>
-          </div>
-
-          <label for="detalhesPlano">Detalhes do plano (opcional)</label>
-          <textarea id="detalhesPlano" rows="4" placeholder="Ex.: ✅ Criação de campanhas no Meta e Google Ads&#10;✅ Otimização e monitoramento diário&#10;..."></textarea>
-
-          <label for="clausulasExtras">Cláusulas adicionais (opcional)</label>
-          <textarea id="clausulasExtras" rows="3" placeholder="Ex.: Multa de 1 mensalidade na ausência de aviso prévio de 30 dias."></textarea>
-
-          <div class="actions">
-            <button class="btn" id="limpar">Limpar</button>
-            <button class="btn" id="restaurar">Restaurar</button>
-            <button class="btn success" id="imprimir">Imprimir Contrato</button>
-          </div>
+      <div class="row">
+        <div>
+          <label for="clienteDoc">CNPJ/CPF</label>
+          <input id="clienteDoc" placeholder="00.000.000/0000-00" />
+        </div>
+        <div>
+          <label for="contatoCliente">E-mail / Telefone</label>
+          <input id="contatoCliente" type="email" inputmode="email" placeholder="email@cliente.com" />
         </div>
       </div>
 
+      <label for="enderecoCliente">Endereço (Contratante)</label>
+      <input id="enderecoCliente" placeholder="Rua, número, bairro, cidade/UF" />
+    </div>
+
+    <!-- PASSO 2 -->
+    <div class="step" data-step="2">
+      <div class="step-title">Serviço contratado</div>
+      <div class="step-sub">
+        Detalhe o que a Is Help vai entregar para este cliente.
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="escopo">Escopo (texto usado nas cláusulas)</label>
+          <input id="escopo" placeholder="Ex.: gestão de redes sociais" />
+
+          <label for="servico">Plano</label>
+          <input id="servico" placeholder="Gestão de redes e tráfego" />
+        </div>
+        <div>
+          <label for="valor">Valor mensal</label>
+          <input id="valor" placeholder="R$ 1.300,00" />
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 3 -->
+    <div class="step" data-step="3">
+      <div class="step-title">Pagamento</div>
+      <div class="step-sub">
+        Forma de pagamento e datas importantes.
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="formaPagamento">Forma de pagamento</label>
+          <select id="formaPagamento">
+            <option value="">Selecione…</option>
+            <option value="Boleto/Pix">Boleto/Pix</option>
+            <option value="Cartão de crédito">Cartão de crédito</option>
+          </select>
+
+          <label for="dataPrimeiroPgto">Data 1º pagamento</label>
+          <input id="dataPrimeiroPgto" type="date" />
+        </div>
+        <div>
+          <label for="vencimentoDia">Dia de vencimento</label>
+          <input id="vencimentoDia" type="number" inputmode="numeric" min="1" max="31" step="1" placeholder="Ex.: 08" />
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 4 -->
+    <div class="step" data-step="4">
+      <div class="step-title">Período do contrato</div>
+      <div class="step-sub">
+        Quando o serviço começa e qual a data da assinatura.
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="dataInicio">Início da prestação</label>
+          <input id="dataInicio" type="date" />
+        </div>
+        <div>
+          <label for="dataAssinatura">Data de assinatura</label>
+          <input id="dataAssinatura" type="date" />
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 5 -->
+    <div class="step" data-step="5">
+      <div class="step-title">Detalhes finais</div>
+      <div class="step-sub">
+        Personalize o plano e inclua cláusulas específicas, se quiser.
+      </div>
+
+      <label for="detalhesPlano">Detalhes do plano (opcional)</label>
+      <textarea id="detalhesPlano" rows="4" placeholder="Ex.: ✅ Criação de campanhas no Meta e Google Ads&#10;✅ Otimização e monitoramento diário&#10;..."></textarea>
+
+      <label for="clausulasExtras">Cláusulas adicionais (opcional)</label>
+      <textarea id="clausulasExtras" rows="3" placeholder="Ex.: Multa de 1 mensalidade na ausência de aviso prévio de 30 dias."></textarea>
+
+      <!-- Botões aparecem no último passo -->
+      <div class="actions">
+        <button class="btn" id="limpar">Limpar</button>
+        <button class="btn" id="restaurar">Restaurar</button>
+        <button class="btn success" id="imprimir">Imprimir Contrato</button>
+      </div>
+    </div>
+
+    <!-- Navegação do wizard -->
+    <div class="wizard-nav">
+      <button type="button" class="btn" id="prevStep">Voltar</button>
+      <button type="button" class="btn success" id="nextStep">Próximo</button>
+    </div>
+  </div>
+</div>
+
+      </div>
+
       <!-- ===== PÁGINA / CONTRATO ===== -->
-      <div class="sheet-wrap" id="previewCard" aria-live="polite">
+      <div class="sheet-wrap hidden-preview" id="previewCard" aria-live="polite">
         <div class="sheet" id="contrato">
           <div class="logo-top">
-            <img src="./assets/ishelp-logo.png" alt="Is Help" />
+            <img src="https://contrato-ishelp.vercel.app/assets/ishelp-logo.png" alt="Is Help" />
           </div>
           <div class="title">CONTRATO DE PRESTAÇÃO DE SERVIÇO</div>
           <p class="definicao">
