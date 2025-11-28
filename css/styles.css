@@ -23,7 +23,7 @@ input:focus, textarea:focus, select:focus{border-color:#94a3b8;box-shadow:0 0 0 
 .hint{color:var(--ui-muted);font-size:12px;margin-top:6px}
 
 /* ===== Documento (Word-like) ===== */
-.sheet-wrap{background:#fff;border-radius:12px;overflow:hidden}
+.sheet-wrap{background:#13161A;border-radius:12px;overflow:hidden}
 .sheet{
   width:var(--page-w); min-height:var(--page-h);
   padding:var(--page-pad);
@@ -332,4 +332,3 @@ select option{
     display: none !important;
   }
 }
-
