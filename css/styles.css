@@ -1,4 +1,4 @@
-:root{
+    :root{
   --ui-bg:#002022; --ui-card:#13161a; --ui-ink:#e7ecf3; --ui-muted:#a6b0bf;
   --ui-radius:14px; --ui-shadow:0 10px 28px rgba(0,0,0,.35);
   --page-w:210mm; --page-h:297mm; --page-pad:25.4mm; /* A4 + margens 2,54 cm */
